@@ -1,0 +1,16 @@
+{
+	"__ver": "sys-pkg:1",
+	"_id": "jIFhT3dDTDWj5L75KbfMYQ",
+	"key": "sys.dbui.bo.ReplicationSpec",
+	"language": {
+		"_disp": "English",
+		"_id": "-9vPfv2lEeSFtiimx_V4dw",
+		"code": "en"
+	},
+	"value": {
+		"business_object": "Business Object",
+		"condition": "Condition",
+		"data_trigger": "DataTrigger",
+		"partner": "Partner"
+	}
+}

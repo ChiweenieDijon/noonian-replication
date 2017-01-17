@@ -1,0 +1,13 @@
+{
+	"__ver": "sys-pkg:1",
+	"_id": "7DCC2yA_TFS5_2AGfBb8IQ",
+	"before_after": "before",
+	"business_object": {
+		"_disp": "ReplicationSpec",
+		"_id": "IfUW4bRlQKqbgXK7cl3J0w"
+	},
+	"key": "sys.replication.onSpecUpdate",
+	"on_create": true,
+	"on_delete": true,
+	"on_update": true
+}

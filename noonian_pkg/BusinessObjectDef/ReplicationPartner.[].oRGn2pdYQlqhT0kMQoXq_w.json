@@ -1,0 +1,17 @@
+{
+	"__ver": "sys-pkg:1",
+	"_id": "oRGn2pdYQlqhT0kMQoXq_w",
+	"class_name": "ReplicationPartner",
+	"definition": {
+		"auth": {
+			"type": "object"
+		},
+		"name": {
+			"type": "string"
+		},
+		"url": {
+			"type": "url"
+		}
+	},
+	"system": true
+}

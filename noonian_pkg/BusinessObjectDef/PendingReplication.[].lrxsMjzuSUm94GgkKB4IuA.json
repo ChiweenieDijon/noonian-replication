@@ -1,0 +1,37 @@
+{
+	"__ver": "sys-pkg:1",
+	"_id": "lrxsMjzuSUm94GgkKB4IuA",
+	"class_name": "PendingReplication",
+	"definition": {
+		"attempt_result": {
+			"type": "object"
+		},
+		"spec": {
+			"ref_class": "ReplicationSpec",
+			"type": "reference"
+		},
+		"status": {
+			"enum": [
+				"new",
+				"in_progress",
+				"error"
+			],
+			"type": "string"
+		},
+		"target_object": {
+			"type": "object"
+		},
+		"target_version": {
+			"type": "string"
+		},
+		"update_type": {
+			"enum": [
+				"create",
+				"update",
+				"delete"
+			],
+			"type": "string"
+		}
+	},
+	"system": true
+}

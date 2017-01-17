@@ -1,0 +1,34 @@
+{
+	"__ver": "sys-pkg:1",
+	"_id": "8fvqb7b8TZCElDHF8tK_dg",
+	"key": "sys.dbui.perspective.default.PendingReplication",
+	"system": false,
+	"value": {
+		"edit": {
+			"layout": [
+				"spec",
+				"update_type",
+				"target_version",
+				"attempt_result",
+				"target_object"
+			]
+		},
+		"list": {
+			"fields": [
+				"spec",
+				"update_type",
+				"status",
+				"attempt_result"
+			]
+		},
+		"view": {
+			"layout": [
+				"spec",
+				"update_type",
+				"target_version",
+				"attempt_result",
+				"target_object"
+			]
+		}
+	}
+}

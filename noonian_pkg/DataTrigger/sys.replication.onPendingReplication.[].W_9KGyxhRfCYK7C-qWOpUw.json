@@ -1,0 +1,11 @@
+{
+	"__ver": "sys-pkg:1",
+	"_id": "W_9KGyxhRfCYK7C-qWOpUw",
+	"before_after": "after",
+	"business_object": {
+		"_disp": "PendingReplication",
+		"_id": "lrxsMjzuSUm94GgkKB4IuA"
+	},
+	"key": "sys.replication.onPendingReplication",
+	"on_create": true
+}

@@ -1,0 +1,47 @@
+{
+	"__ver": "sys-pkg:1",
+	"_id": "7rDu5_DYQv6-XtxHzgFOhQ",
+	"key": "sys.dbui.perspective.default.ReplicationSpec",
+	"system": false,
+	"value": {
+		"edit": {
+			"layout": [
+				"business_object",
+				"partner",
+				"condition",
+				"data_trigger"
+			]
+		},
+		"list": {
+			"fields": [
+				"business_object",
+				"partner",
+				"condition"
+			]
+		},
+		"picker_list": {
+			"fields": [
+				"business_object",
+				"partner",
+				"condition"
+			]
+		},
+		"view": {
+			"layout": [
+				"business_object",
+				"partner",
+				"condition",
+				"data_trigger"
+			],
+			"recordActions": [
+				"edit",
+				"delete",
+				{
+					"icon": "fa-upload",
+					"label": "InitialSync",
+					"ws": "replication/initialSync"
+				}
+			]
+		}
+	}
+}

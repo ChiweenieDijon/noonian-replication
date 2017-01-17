@@ -1,0 +1,15 @@
+{
+	"__ver": "sys-pkg:1",
+	"_id": "FHHQSdnRTa6KYVGhOjJyxw",
+	"key": "sys.dbui.bo.ReplicationPartner",
+	"language": {
+		"_disp": "English",
+		"_id": "-9vPfv2lEeSFtiimx_V4dw",
+		"code": "en"
+	},
+	"value": {
+		"auth": "Authentication",
+		"name": "Name",
+		"url": "Partner Url"
+	}
+}

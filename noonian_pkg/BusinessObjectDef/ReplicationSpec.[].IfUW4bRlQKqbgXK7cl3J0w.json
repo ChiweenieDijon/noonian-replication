@@ -1,0 +1,24 @@
+{
+	"__ver": "sys-pkg:1",
+	"_id": "IfUW4bRlQKqbgXK7cl3J0w",
+	"class_name": "ReplicationSpec",
+	"definition": {
+		"business_object": {
+			"ref_class": "BusinessObjectDef",
+			"type": "reference"
+		},
+		"condition": {
+			"type": "object"
+		},
+		"data_trigger": {
+			"ref_class": "DataTrigger",
+			"type": "reference"
+		},
+		"partner": {
+			"ref_class": "ReplicationPartner",
+			"type": "reference"
+		}
+	},
+	"superclass": null,
+	"system": true
+}

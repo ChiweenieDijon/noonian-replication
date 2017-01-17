@@ -1,0 +1,17 @@
+{
+	"__ver": "sys-pkg:1",
+	"_id": "mqhspCUISEKJhrBpiShT7g",
+	"key": "sys.dbui.bo.PendingReplication",
+	"language": {
+		"_disp": "English",
+		"_id": "-9vPfv2lEeSFtiimx_V4dw",
+		"code": "en"
+	},
+	"value": {
+		"attempt_result": "Attempt Result",
+		"spec": "ReplicationSpec",
+		"target_object": "Target Object",
+		"target_version": "Target Version ID",
+		"update_type": "Update Type"
+	}
+}

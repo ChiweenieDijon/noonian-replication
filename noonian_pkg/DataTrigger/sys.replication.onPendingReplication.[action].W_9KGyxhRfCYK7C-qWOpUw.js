@@ -1,0 +1,3 @@
+function (ReplicationService) {
+    ReplicationService.processQueue();
+}
