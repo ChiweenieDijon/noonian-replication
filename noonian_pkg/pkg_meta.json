@@ -1,5 +1,5 @@
 {
-	"__ver": "af4e6d5e-6c73-4ce6-901f-4a894e8a8ea9:3|vianey:1",
+	"__ver": "sys-pkg:3",
 	"_id": "aDy3s2DcS-6vnViKw3cn2w",
 	"dependencies": [
 	],
@@ -9,11 +9,12 @@
 	"manifest": {
 		"BusinessObjectDef": {
 			"IfUW4bRlQKqbgXK7cl3J0w": "sys-pkg:1",
+			"__tB83WrT66MY3e6kzLhIg": "sys-pkg:1",
 			"lrxsMjzuSUm94GgkKB4IuA": "sys-pkg:1",
 			"oRGn2pdYQlqhT0kMQoXq_w": "sys-pkg:1"
 		},
 		"CodeModule": {
-			"Xq8Q2owMSUiZSCbylcO-Xg": "sys-pkg:1"
+			"Xq8Q2owMSUiZSCbylcO-Xg": "sys-pkg:3"
 		},
 		"Config": {
 			"7rDu5_DYQv6-XtxHzgFOhQ": "sys-pkg:1",
@@ -33,10 +34,18 @@
 			"waXPuuXVSEat6D7hXR0Nng": "sys-pkg:1"
 		},
 		"WebService": {
-			"a2OXNjw-Rqqxfl6atKlEvw": "sys-pkg:1",
-			"aoqZKRO8TkmfIZeuj77GHA": "sys-pkg:1"
+			"JAwvZBtTSRGyXJjgriiQkw": "sys-pkg:2",
+			"a2OXNjw-Rqqxfl6atKlEvw": "sys-pkg:4",
+			"aoqZKRO8TkmfIZeuj77GHA": "sys-pkg:1",
+			"be2qDJ7DT1qkgJDEr9jttg": "sys-pkg:3",
+			"p1Hh0VyER7eLn1vfv5UFBQ": "sys-pkg:1"
 		}
 	},
-	"minor_version": 8,
-	"name": "Replication"
+	"minor_version": 11,
+	"name": "Replication",
+	"package_file": {
+		"attachment_id": "swEIs0xOSgu_WOgLYcvI6w",
+		"filename": "sys.replication.0.11.json",
+		"type": "application/json"
+	}
 }
