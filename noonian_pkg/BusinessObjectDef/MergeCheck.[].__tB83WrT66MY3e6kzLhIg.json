@@ -1,0 +1,19 @@
+{
+	"__ver": "sys-pkg:1",
+	"_id": "__tB83WrT66MY3e6kzLhIg",
+	"abstract": false,
+	"class_name": "MergeCheck",
+	"definition": {
+		"fields": {
+			"type": "object"
+		},
+		"object_class": {
+			"type": "string"
+		},
+		"object_id": {
+			"type": "string"
+		}
+	},
+	"doc": "One of these are created when divergent versions of an object emerge from being modified independently on two different instances.  Automatic merging occurs, but this object retains any data that may have been overwritten by the merge, so it can be reviewed manually.",
+	"system": false
+}

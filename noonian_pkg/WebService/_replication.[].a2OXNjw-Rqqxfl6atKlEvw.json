@@ -1,11 +1,8 @@
 {
-	"__ver": "sys-pkg:1",
+	"__ver": "sys-pkg:4",
 	"_id": "a2OXNjw-Rqqxfl6atKlEvw",
 	"path": "/replication",
-	"rolespec": {
-		"roles": [
-			"ROLE_REPLICATOR"
-		],
-		"specType": "any"
-	}
+	"rolespec": [
+		"waXPuuXVSEat6D7hXR0Nng"
+	]
 }
