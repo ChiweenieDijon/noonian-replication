@@ -1,9 +1,12 @@
 function (db, httpRequestLib, _, Q) {
+    var PR_THROTTLE_PERIOD = 500; //throttle PendingReplication processing to 
     var exports = {};
     var inProgress = {};
     var removeInProgress = function(key) {
         delete inProgress[key];
     };
+    
+    var running = false;
     
     /**
      * Asynchronously enqueue a data-update event to be replicated.
@@ -49,71 +52,85 @@ function (db, httpRequestLib, _, Q) {
      * Process queue
      **/
     exports.processQueue = function() {
-        console.log("PROCESSING REPLICATION QUEUE!");
-        var prQuery = {status:'new'};
-        var idsInProgress = Object.keys(inProgress);
-        if(idsInProgress.length > 0) {
-            prQuery._id = {$nin:idsInProgress};
-        }
-        
-      db.PendingReplication.find(prQuery).exec().then(function(prList) {
-          
-          _.forEach(prList, function(pr) {
-              if(inProgress[pr._id])
-                return;
+        if(!running) {
+            console.log("PROCESSING REPLICATION QUEUE!");
+            running = true;
+            
+            var lastPromise = Q(true);
+            var intervalObj;
+            
+            //Called on a periodic to throttle replication processing
+            const processNextPr = function() {
+                if(lastPromise.state === 'pending') {
+                    //Skip this round if still waiting on a previous record
+                    return;
+                }
                 
-              var targetBoClassName;
-              
-              pr.status = 'in_progress';
-              inProgress[pr._id] = true;
-              
-             //Grab the ReplicationSpec for this PR
-             Q.all([
-                pr.save({skipTriggers:true}, null),  
-                db.ReplicationSpec.findOne({_id:pr.spec._id}).exec()
-            ])
-            .then(function(resultArr){
-                  var repSpec = resultArr[1];
-                  targetBoClassName = repSpec.business_object._disp;
-                  
-                  //Grab the partner
-                  return db.ReplicationPartner.findOne({_id:repSpec.partner._id}).exec();
-              })
-              .then(function(partner) {
-                  //Now, let's send pr.target_object to partner.url using credentials in partner.auth
-                  console.log('sending to %s -> %s', partner.name, pr.target_object._id);
-                  var url = partner.url+'/ws/replication';
-                  var header = { authorization:'Bearer '+partner.auth.token};
-                  
-                  httpRequestLib.post( {
-                      uri:url,
-                      headers:header,
-                      rejectUnauthorized: false,
-                      json:true,
-                      body:{update_type:pr.update_type, target_class:targetBoClassName, target_object:pr.target_object, target_version:pr.target_version}
-                  }, function(err, httpResponse, body) {
-                      if(body && body.result === 'success') {
-                          console.log('Successful replication of %s %s', targetBoClassName, pr.target_object._id);
-                          pr.remove().then(removeInProgress.bind(null, pr._id));
-                      }
-                      else {
-                          console.error('FAILED REPLICATION: %s, %j', err, body);
-                          if(!body) body = {};
-                          body._http_err = err;
-                          pr.attempt_result = body;
-                          pr.status = 'error';
-                          pr.save().then(removeInProgress.bind(null, pr._id));
-                      }
-                  });
-                  
-                  
-              });
-              
-              
-          });//End prList iteration
-          
-      });
-      
+                lastPromise = db.PendingReplication.findOne({status:'new'}).then(function(pr) {
+                    if(!pr) {
+                        running = false;
+                        clearInterval(intervalObj);
+                        return;
+                    }
+                    
+                    var targetBoClassName;
+                    
+                    pr.status = 'in_progress';
+                    
+                    //Grab the ReplicationSpec for this PR
+                     return Q.all([
+                        pr.save({skipTriggers:true}, null),
+                        db.ReplicationSpec.findOne({_id:pr.spec._id}).exec()
+                    ])
+                    .then(function(resultArr){
+                        var repSpec = resultArr[1];
+                        targetBoClassName = db[repSpec.business_object._id]._bo_meta_data.class_name;
+                        
+                        //Grab the partner
+                        return db.ReplicationPartner.findOne({_id:repSpec.partner._id}).exec();
+                    })
+                    .then(function(partner) {
+                        //Now, let's send pr.target_object to partner.url using credentials in partner.auth
+                        console.log('sending to %s -> %s', partner.name, pr.target_object._id);
+                        var url = partner.url+'/ws/replication';
+                        var header = { authorization:'Bearer '+partner.auth.token};
+                        
+                        var postBody = {
+                            update_type:pr.update_type, 
+                            target_class:targetBoClassName, 
+                            target_object:pr.target_object, 
+                            target_version:pr.target_version
+                        };
+                        
+                        httpRequestLib.post( {
+                            uri:url,
+                            headers:header,
+                            rejectUnauthorized: false,
+                            json:true,
+                            body:postBody
+                        }, function(err, httpResponse, body) {
+                            if(body && body.result === 'success') {
+                                console.log('Successful replication of %s %s', targetBoClassName, pr.target_object._id);
+                                pr.remove();
+                            }
+                            else {
+                                console.error('FAILED REPLICATION: %s, %j', err, body);
+                                if(!body) body = {};
+                                body._http_err = err;
+                                pr.attempt_result = body;
+                                pr.status = 'error';
+                                pr.save();
+                            }
+                        });//end httpRequest.post
+                    });//end "then" sequence
+                }); //end PendingReplication.findOne().then(...)
+                
+            };//end processNextPr function def
+            
+            intervalObj = setInterval(processNextPr, PR_THROTTLE_PERIOD);
+            
+        }//end if(!running)
+        
     };//end processQueue
     
     

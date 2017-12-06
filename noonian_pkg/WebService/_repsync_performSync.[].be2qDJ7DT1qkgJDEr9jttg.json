@@ -1,0 +1,9 @@
+{
+	"__ver": "sys-pkg:3",
+	"_id": "be2qDJ7DT1qkgJDEr9jttg",
+	"doc": "Initiate a replication sync w/ partner. For each class of interest:\n1) Grab manifest from partner\n2) Grab local manifest. For each record:\n2.1) compare version id's\n2.2) if partner needs my version, send it to partner's \"replication' \n@param partner - name of partner (corresponding to ReplicationPartner record)\n@param boClass - class of objects whose updates are sent to partner",
+	"path": "/repsync/performSync",
+	"rolespec": [
+		"waXPuuXVSEat6D7hXR0Nng"
+	]
+}

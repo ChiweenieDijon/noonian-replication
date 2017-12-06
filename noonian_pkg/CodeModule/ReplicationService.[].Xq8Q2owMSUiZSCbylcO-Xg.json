@@ -1,5 +1,5 @@
 {
-	"__ver": "sys-pkg:1",
+	"__ver": "sys-pkg:3",
 	"_id": "Xq8Q2owMSUiZSCbylcO-Xg",
 	"name": "ReplicationService",
 	"path": "sys/replication"
