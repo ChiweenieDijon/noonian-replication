@@ -1,9 +1,12 @@
 {
-	"__ver": "sys-pkg:1",
+	"__ver": "sys-pkg:2",
 	"_id": "__tB83WrT66MY3e6kzLhIg",
 	"abstract": false,
 	"class_name": "MergeCheck",
 	"definition": {
+		"created_date": {
+			"type": "datetime"
+		},
 		"fields": {
 			"type": "object"
 		},

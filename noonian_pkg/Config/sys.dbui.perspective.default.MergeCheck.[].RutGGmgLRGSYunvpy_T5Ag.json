@@ -1,0 +1,26 @@
+{
+	"__ver": "sys-pkg:3",
+	"_id": "RutGGmgLRGSYunvpy_T5Ag",
+	"allow_customize": false,
+	"key": "sys.dbui.perspective.default.MergeCheck",
+	"rolespec": [
+	],
+	"system": false,
+	"value": {
+		"edit": {
+			"layout": [
+				"object_class",
+				"object_id",
+				"fields",
+				"created_date"
+			]
+		},
+		"list": {
+			"fields": [
+				"object_class",
+				"object_id",
+				"created_date"
+			]
+		}
+	}
+}

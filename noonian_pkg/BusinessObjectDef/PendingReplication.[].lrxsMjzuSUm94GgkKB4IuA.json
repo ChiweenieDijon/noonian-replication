@@ -1,10 +1,14 @@
 {
-	"__ver": "sys-pkg:1",
+	"__ver": "sys-pkg:2",
 	"_id": "lrxsMjzuSUm94GgkKB4IuA",
+	"abstract": false,
 	"class_name": "PendingReplication",
 	"definition": {
 		"attempt_result": {
 			"type": "object"
+		},
+		"created_date": {
+			"type": "datetime"
 		},
 		"spec": {
 			"ref_class": "ReplicationSpec",

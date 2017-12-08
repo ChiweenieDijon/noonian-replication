@@ -1,0 +1,17 @@
+{
+	"__ver": "sys-pkg:1",
+	"_id": "eQUDDFU3TaqLokpHUFdawQ",
+	"key": "sys.dbui.bo.MergeCheck",
+	"language": {
+		"_disp": "English",
+		"_id": "-9vPfv2lEeSFtiimx_V4dw",
+		"code": "en"
+	},
+	"system": false,
+	"value": {
+		"created_date": "Created Date",
+		"fields": "Fields",
+		"object_class": "Object Class",
+		"object_id": "Object Id"
+	}
+}
