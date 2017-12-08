@@ -113,7 +113,7 @@ function (db, httpRequestLib, _, Q) {
                                 console.log('Successful replication of %s %s', targetBoClassName, pr.target_object._id);
                                 pr.remove();
                             }
-                            else {
+                            else if(!body || body.result !== 'up-to-date') {
                                 console.error('FAILED REPLICATION: %s, %j', err, body);
                                 if(!body) body = {};
                                 body._http_err = err;
