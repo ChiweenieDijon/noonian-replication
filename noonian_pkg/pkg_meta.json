@@ -1,5 +1,5 @@
 {
-	"__ver": "sys-pkg:3",
+	"__ver": "sys-pkg:4",
 	"_id": "aDy3s2DcS-6vnViKw3cn2w",
 	"dependencies": [
 	],
@@ -8,44 +8,46 @@
 	"major_version": 0,
 	"manifest": {
 		"BusinessObjectDef": {
-			"IfUW4bRlQKqbgXK7cl3J0w": "sys-pkg:1",
-			"__tB83WrT66MY3e6kzLhIg": "sys-pkg:1",
-			"lrxsMjzuSUm94GgkKB4IuA": "sys-pkg:1",
+			"IfUW4bRlQKqbgXK7cl3J0w": "sys-pkg:2",
+			"__tB83WrT66MY3e6kzLhIg": "sys-pkg:2",
+			"lrxsMjzuSUm94GgkKB4IuA": "sys-pkg:2",
 			"oRGn2pdYQlqhT0kMQoXq_w": "sys-pkg:1"
 		},
 		"CodeModule": {
-			"Xq8Q2owMSUiZSCbylcO-Xg": "sys-pkg:3"
+			"Xq8Q2owMSUiZSCbylcO-Xg": "sys-pkg:4"
 		},
 		"Config": {
-			"7rDu5_DYQv6-XtxHzgFOhQ": "sys-pkg:1",
-			"8fvqb7b8TZCElDHF8tK_dg": "sys-pkg:1",
-			"9HAsXWmwSLmIqkJGi--rIA": "sys-pkg:1"
+			"7rDu5_DYQv6-XtxHzgFOhQ": "sys-pkg:2",
+			"8fvqb7b8TZCElDHF8tK_dg": "sys-pkg:2",
+			"9HAsXWmwSLmIqkJGi--rIA": "sys-pkg:1",
+			"RutGGmgLRGSYunvpy_T5Ag": "sys-pkg:3"
 		},
 		"DataTrigger": {
-			"7DCC2yA_TFS5_2AGfBb8IQ": "sys-pkg:1",
+			"7DCC2yA_TFS5_2AGfBb8IQ": "sys-pkg:2",
 			"W_9KGyxhRfCYK7C-qWOpUw": "sys-pkg:1"
 		},
 		"LabelGroup": {
 			"FHHQSdnRTa6KYVGhOjJyxw": "sys-pkg:1",
-			"jIFhT3dDTDWj5L75KbfMYQ": "sys-pkg:1",
+			"eQUDDFU3TaqLokpHUFdawQ": "sys-pkg:1",
+			"jIFhT3dDTDWj5L75KbfMYQ": "sys-pkg:2",
 			"mqhspCUISEKJhrBpiShT7g": "sys-pkg:1"
 		},
 		"Role": {
 			"waXPuuXVSEat6D7hXR0Nng": "sys-pkg:1"
 		},
 		"WebService": {
-			"JAwvZBtTSRGyXJjgriiQkw": "sys-pkg:2",
-			"a2OXNjw-Rqqxfl6atKlEvw": "sys-pkg:4",
+			"JAwvZBtTSRGyXJjgriiQkw": "sys-pkg:4",
+			"a2OXNjw-Rqqxfl6atKlEvw": "sys-pkg:7",
 			"aoqZKRO8TkmfIZeuj77GHA": "sys-pkg:1",
 			"be2qDJ7DT1qkgJDEr9jttg": "sys-pkg:3",
 			"p1Hh0VyER7eLn1vfv5UFBQ": "sys-pkg:1"
 		}
 	},
-	"minor_version": 11,
+	"minor_version": 12,
 	"name": "Replication",
 	"package_file": {
-		"attachment_id": "swEIs0xOSgu_WOgLYcvI6w",
-		"filename": "sys.replication.0.11.json",
+		"attachment_id": "olrB2k8ZSU23Fq7JQrnXng",
+		"filename": "sys.replication.0.12.json",
 		"type": "application/json"
 	}
 }
