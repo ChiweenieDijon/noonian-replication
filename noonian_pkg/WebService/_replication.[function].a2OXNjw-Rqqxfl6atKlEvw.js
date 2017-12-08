@@ -25,26 +25,24 @@ function (db, auth, req, postBody, _, Q, nodeRequire) {
             if(currObj) {
                 
                 //Check Version
-                var localVersion = new VersionId(currObj.__ver);
+                var localVerIsOld = typeof currObj.__ver !== 'string'; //(OLD records have object id's as __ver values)
+                
+                var localVersion = !localVerIsOld && new VersionId(currObj.__ver);
                 var incomingVersion = new VersionId(targetObj.__ver);
                 
                 //Compare versions...
-                var localToIncoming = localVersion.relationshipTo(incomingVersion);
+                var localToIncoming = !localVerIsOld && localVersion.relationshipTo(incomingVersion);
                 
-                
-                //Special cases: OLD records have object id's as __ver values
-                var localNewer = !localVersion.isObjectId && incomingVersion.isObjectId;
-                var incomingNewer = localVersion.isObjectId && !incomingVersion.isObjectId;
-                var bothOld = localVersion.isObjectId && incomingVersion.isObjectId;
                 
                 if(localToIncoming.same) {
                     return {result:'up-to-date'};
                 }
-                if(localNewer || localToIncoming.descendant) {
+                
+                if(localToIncoming.descendant) {
                     return {result:'skipped - local version newer'};
                 }
                 
-                if(incomingNewer || localToIncoming.ancestor) {
+                if(localVerIsOld || localToIncoming.ancestor) {
                     //local is ancestor of incoming -> incoming is newer; 
                     //insert changes - no merge required
                     targetObj.__ver = currObj.__ver;
@@ -54,7 +52,7 @@ function (db, auth, req, postBody, _, Q, nodeRequire) {
                     return currObj.save({useVersionId:incomingVersion.toString(),filterTriggers:dataTriggerPattern}, null).then(function(){return {result:'success', action:'updated'}});
                 }
                 
-                if(bothOld || localToIncoming.cousin) {
+                if(localToIncoming.cousin) {
                     //divergent changes - do a merge.
                     var manualCheck = {};
                     var tdMap = currObj._bo_meta_data.type_desc_map;
@@ -103,10 +101,6 @@ function (db, auth, req, postBody, _, Q, nodeRequire) {
                                 return;
                             }
                             var typ = td[0].type;
-                            if(typ === 'string' || typ === 'enum') {
-                                currObj[f] = _.union(cVal, tVal);
-                                return;
-                            }
                             if(typ === 'reference') {
                                 currObj[f] = _.uniq(cVal.concat(tVal), '_id');
                                 return;
@@ -115,6 +109,9 @@ function (db, auth, req, postBody, _, Q, nodeRequire) {
                                 currObj[f] = _.uniq(cVal.concat(tVal), 'attachment_id');
                                 return;
                             }
+                            //an array of anything other than refs or attachments: just union the two.
+                            currObj[f] = _.union(cVal, tVal);
+                            return;
                             
                         }
                         
