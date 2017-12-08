@@ -1,5 +1,5 @@
 {
-	"__ver": "sys-pkg:2",
+	"__ver": "sys-pkg:4",
 	"_id": "JAwvZBtTSRGyXJjgriiQkw",
 	"doc": "1) Grab manifest from partner\n2) Query local database.  For each record w/ matching version id, do a dummy save locally.",
 	"path": "/repsync/specialSync",
