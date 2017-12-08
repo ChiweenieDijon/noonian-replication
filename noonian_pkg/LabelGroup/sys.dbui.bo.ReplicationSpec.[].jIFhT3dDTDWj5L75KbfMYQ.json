@@ -1,5 +1,5 @@
 {
-	"__ver": "sys-pkg:1",
+	"__ver": "sys-pkg:2",
 	"_id": "jIFhT3dDTDWj5L75KbfMYQ",
 	"key": "sys.dbui.bo.ReplicationSpec",
 	"language": {
@@ -8,6 +8,7 @@
 		"code": "en"
 	},
 	"value": {
+		"allow_two_way": "Allow 2-way",
 		"business_object": "Business Object",
 		"condition": "Condition",
 		"data_trigger": "DataTrigger",
