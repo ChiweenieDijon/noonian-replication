@@ -1,13 +1,19 @@
 {
-	"__ver": "sys-pkg:1",
+	"__ver": "sys-pkg:2",
 	"_id": "7rDu5_DYQv6-XtxHzgFOhQ",
+	"allow_customize": false,
 	"key": "sys.dbui.perspective.default.ReplicationSpec",
+	"rolespec": [
+	],
 	"system": false,
 	"value": {
 		"edit": {
 			"layout": [
 				"business_object",
-				"partner",
+				[
+					"partner",
+					"allow_two_way"
+				],
 				"condition",
 				"data_trigger"
 			]
@@ -29,7 +35,10 @@
 		"view": {
 			"layout": [
 				"business_object",
-				"partner",
+				[
+					"partner",
+					"allow_two_way"
+				],
 				"condition",
 				"data_trigger"
 			],

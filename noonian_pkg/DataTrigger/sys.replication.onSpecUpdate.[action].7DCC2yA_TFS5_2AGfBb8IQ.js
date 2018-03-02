@@ -12,6 +12,11 @@ function (db, isCreate, isUpdate, isDelete) {
     //Create the corresponding data trigger if needed...
     var dataTriggerKey = 'sys.replication.'+boClass; 
     
+    if(this.allow_two_way) {
+        //allow this to trigger when objects are updated via incoming replication
+        dataTriggerKey += '.onReplication';
+    }
+    
     promiseToReturn = db.DataTrigger.find({key:dataTriggerKey}).exec().then(function(matchingDt) {
        if(!matchingDt || matchingDt.length === 0) {
             

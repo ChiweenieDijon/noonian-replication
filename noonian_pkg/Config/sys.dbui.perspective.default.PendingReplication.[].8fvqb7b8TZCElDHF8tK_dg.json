@@ -1,7 +1,10 @@
 {
-	"__ver": "sys-pkg:1",
+	"__ver": "sys-pkg:2",
 	"_id": "8fvqb7b8TZCElDHF8tK_dg",
+	"allow_customize": false,
 	"key": "sys.dbui.perspective.default.PendingReplication",
+	"rolespec": [
+	],
 	"system": false,
 	"value": {
 		"edit": {
@@ -18,11 +21,13 @@
 				"spec",
 				"update_type",
 				"status",
-				"attempt_result"
+				"attempt_result",
+				"created_date"
 			]
 		},
 		"view": {
 			"layout": [
+				"created_date",
 				"spec",
 				"update_type",
 				"target_version",

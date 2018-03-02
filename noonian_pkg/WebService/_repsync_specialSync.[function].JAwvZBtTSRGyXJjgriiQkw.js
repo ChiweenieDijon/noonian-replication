@@ -52,8 +52,7 @@ function (db, queryParams, _, Q, httpRequestLib, nodeRequire, ReplicationService
                         var lv = new VersionId(''+localObj.__ver);
                         
                         //Compare versions...
-                        var localToPartner = lv.relationshipTo(pv);
-                        if(localToPartner.same) {
+                        if(pv && lv.relationshipTo(pv).same) {
                             toSave.push(localObj);
                         }
                     });
@@ -71,7 +70,7 @@ function (db, queryParams, _, Q, httpRequestLib, nodeRequire, ReplicationService
                         toSave[index].save();
                         index++;
                     };
-                    intervalObj = setInterval(saveNext, 1000);
+                    intervalObj = setInterval(saveNext, 500);
               });
               
           }

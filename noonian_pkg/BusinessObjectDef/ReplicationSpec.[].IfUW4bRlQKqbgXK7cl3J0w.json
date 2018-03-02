@@ -1,8 +1,12 @@
 {
-	"__ver": "sys-pkg:1",
+	"__ver": "sys-pkg:2",
 	"_id": "IfUW4bRlQKqbgXK7cl3J0w",
+	"abstract": false,
 	"class_name": "ReplicationSpec",
 	"definition": {
+		"allow_two_way": {
+			"type": "boolean"
+		},
 		"business_object": {
 			"ref_class": "BusinessObjectDef",
 			"type": "reference"
