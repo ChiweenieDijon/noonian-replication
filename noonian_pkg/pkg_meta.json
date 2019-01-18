@@ -1,6 +1,8 @@
 {
-	"__ver": "sys-pkg:4",
+	"__ver": "sys-pkg:5",
 	"_id": "aDy3s2DcS-6vnViKw3cn2w",
+	"changelog": [
+	],
 	"dependencies": [
 	],
 	"description": "Data Replication",
@@ -14,7 +16,7 @@
 			"oRGn2pdYQlqhT0kMQoXq_w": "sys-pkg:1"
 		},
 		"CodeModule": {
-			"Xq8Q2owMSUiZSCbylcO-Xg": "sys-pkg:4"
+			"Xq8Q2owMSUiZSCbylcO-Xg": "sys-pkg:7"
 		},
 		"Config": {
 			"7rDu5_DYQv6-XtxHzgFOhQ": "sys-pkg:2",
@@ -40,14 +42,16 @@
 			"a2OXNjw-Rqqxfl6atKlEvw": "sys-pkg:7",
 			"aoqZKRO8TkmfIZeuj77GHA": "sys-pkg:1",
 			"be2qDJ7DT1qkgJDEr9jttg": "sys-pkg:3",
-			"p1Hh0VyER7eLn1vfv5UFBQ": "sys-pkg:1"
+			"p1Hh0VyER7eLn1vfv5UFBQ": "sys-pkg:1",
+			"wW66tKohQdahn01dGX7PBA": "sys-pkg:1"
 		}
 	},
-	"minor_version": 12,
+	"minor_version": 13,
 	"name": "Replication",
 	"package_file": {
-		"attachment_id": "olrB2k8ZSU23Fq7JQrnXng",
-		"filename": "sys.replication.0.12.json",
+		"attachment_id": "bpA9IaBiRaiqFA2chpzsMQ",
+		"filename": "sys.replication.0.13.0.json",
 		"type": "application/json"
-	}
+	},
+	"version": "0.13.0"
 }
