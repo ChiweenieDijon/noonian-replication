@@ -1,0 +1,8 @@
+{
+	"__ver": "sys-pkg:1",
+	"_id": "wW66tKohQdahn01dGX7PBA",
+	"doc": "receives attachemnt from replication partner",
+	"path": "/replication/attachment",
+	"rolespec": [
+	]
+}

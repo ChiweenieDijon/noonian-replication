@@ -8,6 +8,79 @@ function (db, httpRequestLib, _, Q) {
     
     var running = false;
     
+    const GridFsService = db._svc.GridFsService;
+    const fs = require('fs');
+    const sendAttachment = function(att, url, header) {
+        const deferred = Q.defer();
+        
+        GridFsService.getFile(att.attachment_id).then(fileResult=>{
+            
+            //pipe to filesystem first to get around quirk in request lib that closes the stream too early
+            const tempFile = '/tmp/'+att.attachment_id;
+            const tempfileStream = fs.createWriteStream(tempFile);
+            fileResult.readstream.pipe(tempfileStream);
+            
+            fileResult.readstream.on('end', function() {
+                const formData = {
+                    fileStream:fs.createReadStream(tempFile)
+                }
+                 
+                httpRequestLib.post( {
+                    uri:url+'?metaObj='+encodeURIComponent(JSON.stringify({attachment:att, metadata:fileResult.metadata})),
+                    headers:header, json:true, formData
+                }, function(err, httpResponse, body) {
+                    deferred.resolve(body);
+                    
+                    if(body && body.result === 'success') {
+                        console.log('Successful replication of attachment %s', att.attachment_id);
+                    }
+                    else {
+                        console.log('FAILED REPLICATION of attachment %s %j', att.attachment_id, body);
+                        err && console.log(err);
+                    }
+                    fs.unlink(tempFile);
+                });
+            });
+            
+        },
+        err=>{
+            console.log('FAILED REPLICATION of attachment %s (missing from filestore)', att.attachment_id);
+            deferred.resolve('missing file');
+        }
+        );
+        
+        return deferred.promise;
+    };
+    
+    const sendAttachments = function(partner, targetBoClassName, pr) {
+        
+        var promiseChain = Q(true);
+        
+        const typeDesc = db[targetBoClassName]._bo_meta_data.type_desc_map;
+        
+        const url = partner.url+'/ws/replication/attachment';
+        const header = { authorization:'Bearer '+partner.auth.token};
+        const targetObj = pr.target_object;
+        
+        
+        _.forEach(typeDesc, (td, fieldName)=>{
+            var attArr = null;
+            if(td instanceof Array && td[0].type === 'attachment') {
+                attArr = targetObj[fieldName];
+            } 
+            else if(td.type === 'attachment' && targetObj[fieldName]) {
+                attArr = [targetObj[fieldName]];
+            }
+            if(attArr && attArr.length) {
+                _.forEach(targetObj[fieldName], att=>{
+                    console.log(att);
+                    promiseChain = promiseChain.then(sendAttachment.bind(null, att, url, header));
+                });
+            }
+        });
+        return promiseChain;
+    };
+    
     /**
      * Asynchronously enqueue a data-update event to be replicated.
      **/
@@ -102,6 +175,7 @@ function (db, httpRequestLib, _, Q) {
                             target_version:pr.target_version
                         };
                         
+                        var deferred = Q.defer();
                         httpRequestLib.post( {
                             uri:url,
                             headers:header,
@@ -111,7 +185,9 @@ function (db, httpRequestLib, _, Q) {
                         }, function(err, httpResponse, body) {
                             if(body && body.result === 'success') {
                                 console.log('Successful replication of %s %s', targetBoClassName, pr.target_object._id);
-                                pr.remove();
+                                sendAttachments(partner, targetBoClassName, pr).then(()=>{
+                                    deferred.resolve(pr.remove());  
+                                });
                             }
                             else if(!body || body.result !== 'up-to-date') {
                                 console.error('FAILED REPLICATION: %s, %j', err, body);
@@ -122,6 +198,7 @@ function (db, httpRequestLib, _, Q) {
                                 pr.save();
                             }
                         });//end httpRequest.post
+                        
                     });//end "then" sequence
                 }); //end PendingReplication.findOne().then(...)
                 
